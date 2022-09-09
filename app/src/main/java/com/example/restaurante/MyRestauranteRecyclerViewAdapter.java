@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRestauranteRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<Restaurante> mValues;
 
-    public MyRestauranteRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public MyRestauranteRecyclerViewAdapter(List<Restaurante> items) {
         mValues = items;
     }
 
@@ -46,7 +46,7 @@ public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRes
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
-        public PlaceholderItem mItem;
+        public Restaurante mItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
