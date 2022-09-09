@@ -2,25 +2,29 @@ package com.example.restaurante;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.media.Rating;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.restaurante.placeholder.PlaceholderContent.PlaceholderItem;
+
+import com.bumptech.glide.Glide;
 import com.example.restaurante.databinding.FragmentItemBinding;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRestauranteRecyclerViewAdapter.ViewHolder> {
 
+    private Context ctx;
     private final List<Restaurante> mValues;
 
-    public MyRestauranteRecyclerViewAdapter(List<Restaurante> items) {
+    public MyRestauranteRecyclerViewAdapter(Context context, List <Restaurante> items) {
+        ctx = context;
         mValues = items;
     }
 
@@ -33,9 +37,19 @@ public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRes
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        //Recolectamos los datos del elemento que ocupa la posición "position"
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+
+        holder.textViewNombreRestaurante.setText(holder.mItem.getNombre());
+        holder.textViewDireccionRestaurante.setText(holder.mItem.getDireccion());
+        holder.ratingBarValoracionRestaurante.setRating(holder.mItem.getValoracion());
+
+        Glide.with(ctx)
+                .load((holder.mItem.getUrlPhoto()))
+                .centerCrop()
+                .into(holder.imageViewPhotoRestaurante);
+
+
     }
 
     @Override
@@ -44,19 +58,25 @@ public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRes
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mIdView = null;
+        public final TextView textViewNombreRestaurante;
+        public final TextView textViewDireccionRestaurante;
+        public final ImageView imageViewPhotoRestaurante;
+        public final RatingBar ratingBarValoracionRestaurante;
         public Restaurante mItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            textViewNombreRestaurante = binding.textViewNombre;
+            textViewDireccionRestaurante = binding.textViewDireccion;
+            imageViewPhotoRestaurante = binding.imageViewPhoto;
+            ratingBarValoracionRestaurante = binding.ratingBarValoracion;
+
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + textViewNombreRestaurante.getText() + "'";
         }
     }
 }
