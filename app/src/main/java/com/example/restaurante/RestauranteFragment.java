@@ -22,7 +22,7 @@ public class RestauranteFragment extends Fragment {
 
     RecyclerView recyclerView;
     MyRestauranteRecyclerViewAdapter adapterRestaurantes;
-    List<Restaurante> restauranteList;
+    List<NotasActivity> notasActivityList;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -71,18 +71,18 @@ public class RestauranteFragment extends Fragment {
             }
 
             //Lista de elementos (Restaurantes)
-            restauranteList = new ArrayList<>();
-            restauranteList.add(new Restaurante("Pizzeria Carlos","https://th.bing.com/th/id/R.ad93a6a7158d0a67c8e874a946b16faf?rik=lBaReMFlvQa6dg&pid=ImgRaw&r=0",4.0f,"Madrid, España"));
-            restauranteList.add(new Restaurante("Hamburgueseria rápida","https://th.bing.com/th/id/R.600596d992025c657fdc67d8e9af6661?rik=YI%2bC%2fo98p%2ftCyQ&pid=ImgRaw&r=0",3.0f,"Mexico"));
-            restauranteList.add(new Restaurante("Venta de Mariscos","https://d1ralsognjng37.cloudfront.net/5bdc8613-9273-4f40-addc-418ada8a8cc5.jpeg",1f,"Guatemala"));
-            restauranteList.add(new Restaurante("Restaurante Pedro","https://fullhdpictures.com/wp-content/uploads/2016/11/Restaurant-Photos-HD.jpg",2f,"Honduras"));
+            notasActivityList = new ArrayList<>();
+            notasActivityList.add(new NotasActivity("Recordatorio","",1.0f,"Recoger la ropa en la lavandería"));
+            notasActivityList.add(new NotasActivity("Lista de Compras","0",0.0f,"Pan,Huevos,Leche"));
+            notasActivityList.add(new NotasActivity("Recordatorio","",1f,"Cumpleaños de Mejor amigo"));
+            notasActivityList.add(new NotasActivity("Recordatorio","",1f,"Regocer pantalones"));
 
 
 
 
 
             //Asociamos el apapdator el recyclerView
-            adapterRestaurantes = new MyRestauranteRecyclerViewAdapter(getActivity(), restauranteList);
+            adapterRestaurantes = new MyRestauranteRecyclerViewAdapter(getActivity(), notasActivityList);
             recyclerView.setAdapter(adapterRestaurantes);
         }
         return view;
