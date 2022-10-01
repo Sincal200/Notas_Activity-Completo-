@@ -1,12 +1,12 @@
 package com.example.restaurante;
 
-public class NotasActivity {
+public class Restaurante {
     private String nombre;
     private String urlPhoto;
     private float valoracion;
     private String direccion;
 
-    public NotasActivity(String nombre, String urlPhoto, float valoracion, String direccion) {
+    public Restaurante(String nombre, String urlPhoto, float valoracion, String direccion) {
         this.nombre = nombre;
         this.urlPhoto = urlPhoto;
         this.valoracion = valoracion;

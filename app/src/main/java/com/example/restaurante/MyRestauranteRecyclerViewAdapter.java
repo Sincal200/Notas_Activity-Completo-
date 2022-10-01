@@ -3,7 +3,9 @@ package com.example.restaurante;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.media.Rating;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -19,9 +21,9 @@ import java.util.List;
 public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRestauranteRecyclerViewAdapter.ViewHolder> {
 
     private Context ctx;
-    private final List<NotasActivity> mValues;
+    private final List<Restaurante> mValues;
 
-    public MyRestauranteRecyclerViewAdapter(Context context, List <NotasActivity> items) {
+    public MyRestauranteRecyclerViewAdapter(Context context, List <Restaurante> items) {
         ctx = context;
         mValues = items;
     }
@@ -42,6 +44,10 @@ public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRes
         holder.textViewDireccionRestaurante.setText(holder.mItem.getDireccion());
         holder.ratingBarValoracionRestaurante.setRating(holder.mItem.getValoracion());
 
+        Glide.with(ctx)
+                .load((holder.mItem.getUrlPhoto()))
+                .centerCrop()
+                .into(holder.imageViewPhotoRestaurante);
 
 
     }
@@ -55,15 +61,15 @@ public class MyRestauranteRecyclerViewAdapter extends RecyclerView.Adapter<MyRes
         public final TextView mIdView = null;
         public final TextView textViewNombreRestaurante;
         public final TextView textViewDireccionRestaurante;
-
+        public final ImageView imageViewPhotoRestaurante;
         public final RatingBar ratingBarValoracionRestaurante;
-        public NotasActivity mItem;
+        public Restaurante mItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
             textViewNombreRestaurante = binding.textViewNombre;
             textViewDireccionRestaurante = binding.textViewDireccion;
-
+            imageViewPhotoRestaurante = binding.imageViewPhoto;
             ratingBarValoracionRestaurante = binding.ratingBarValoracion;
 
         }
